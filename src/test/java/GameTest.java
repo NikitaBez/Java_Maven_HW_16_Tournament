@@ -66,4 +66,17 @@ public class GameTest {
             game.round(player3.getName(), "Unregistered player");
         });
     }
+    @Test
+    public void shouldShowTheWinnerIfFirstPlayerIsUnregistered() {
+
+        Game game = new Game();
+        game.registered(player1);
+        game.registered(player2);
+        game.registered(player3);
+        game.registered(player4);
+
+        Assertions.assertThrows(NotRegisteredException.class, () -> {
+            game.round("Unregistered player", player3.getName());
+        });
+    }
 }
